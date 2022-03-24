@@ -69,6 +69,12 @@
   overflow: auto;
 }
 
+.price-box {
+  text-align: end;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+}
+
 
 :host ::ng-deep {
   .p-selectbutton {
@@ -91,6 +97,10 @@
 
   .p-buttonset .p-button:not(:first-of-type):not(:last-of-type) {
     border-radius: 20px;
+  }
+
+  .p-inputnumber-buttons-stacked .p-inputnumber-input {
+    font-size: 1.3rem;
   }
 }
 

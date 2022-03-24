@@ -4,6 +4,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TicketsComponent} from "./containers/tickets/tickets.component";
 import {SelectButtonModule} from "primeng/selectbutton";
 import {PlayedTicketsModule} from "../played-tickets/played-tickets.module";
+import {InputNumberModule} from "primeng/inputnumber";
+import {TicketsStore} from "../../services/tickets-store";
 
 @NgModule({
   declarations: [
@@ -17,7 +19,11 @@ import {PlayedTicketsModule} from "../played-tickets/played-tickets.module";
     ReactiveFormsModule,
     SelectButtonModule,
     FormsModule,
-    PlayedTicketsModule
+    PlayedTicketsModule,
+    InputNumberModule
+  ],
+  providers: [
+    TicketsStore
   ]
 })
 export class TicketsModule { }

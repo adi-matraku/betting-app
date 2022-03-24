@@ -11,10 +11,16 @@
             <p-selectButton class="button-class" [options]="numbers" formControlName="selectedNr" [multiple]="true" optionLabel="name" optionValue="value">
             </p-selectButton>
 
+            <div class="price-box">
+              <p-inputNumber formControlName="price" [showButtons]="true" inputId="stacked" mode="currency" currency="USD">
+              </p-inputNumber>
+            </div>
+
             <div class="button-box">
               <button type="submit" class="button-start" (click)="ticketSubmit()"
                       [disabled]="this.form.get('selectedNr')?.invalid" >Submit Ticket</button>
             </div>
+
           </form>
 
         </div>
@@ -27,8 +33,11 @@
 
   <div class="tickets-played">
     <app-played-tickets
-      [ticket]="selectedNumbers">
+    >
     </app-played-tickets>
   </div>
 
+  <div class="game-box">
+    test
+  </div>
 </div>

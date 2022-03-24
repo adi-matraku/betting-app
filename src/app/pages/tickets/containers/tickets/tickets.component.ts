@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validator, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {customValidator} from "../../utils/customValidator";
+import { v4 as uuidv4 } from 'uuid';
+import {TicketsStore} from "../../../../services/tickets-store";
 
 @Component({
   selector: 'app-tickets',
@@ -12,13 +14,17 @@ export class TicketsComponent implements OnInit {
 
   ticket: boolean = false;
   numbers: {name: string; value: number}[] = this.getArrayNumbers();
-  selectedNumbers: number[] = [];
 
   form = this.fb.group({
-    selectedNr: ['', [customValidator(), Validators.required]]
+    uuid: [uuidv4()],
+    selectedNr: ['', [customValidator(), Validators.required]],
+    price: [5]
   })
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    public store: TicketsStore
+  ) { }
 
   ngOnInit(): void {
   }
@@ -37,12 +43,17 @@ export class TicketsComponent implements OnInit {
 
   ticketSubmit() {
     // console.log(this.form.value.selectedNr);
+    console.log(this.form.value)
+    // this.selectedNumbers = this.form.value.selectedNr
+    this.store.addTicket(this.form.value);
 
-    this.selectedNumbers = this.form.value.selectedNr
+    this.form.get('uuid')?.patchValue(uuidv4());
+    this.form.get('price')?.patchValue(5);
 
-    this.form.reset();
+    this.form.get('selectedNr')?.reset();
+    // this.store.state$.subscribe((res)=> console.log(res))
 
-    console.log(this.selectedNumbers);
+    // console.log(this.selectedNumbers);
   }
 
 }
