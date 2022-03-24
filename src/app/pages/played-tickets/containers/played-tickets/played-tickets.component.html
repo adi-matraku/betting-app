@@ -1,0 +1,17 @@
+<div class="ticket-box">
+
+  <div class="ticket-detail">
+    <h2 *ngIf="ticket.length === 0" >No Ticket Played</h2>
+    <h2 *ngIf="ticket.length !== 0" >Ticket Details</h2>
+
+    <div *ngIf="ticket.length !== 0" class="ticket-details">
+
+      <div *ngFor="let number of ticket" class="ticket-numbers">
+        <p class="number">{{number}}</p>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

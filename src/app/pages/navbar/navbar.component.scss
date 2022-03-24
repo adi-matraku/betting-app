@@ -1,0 +1,15 @@
+.navbar {
+  background-color: #232776;
+  height: 5rem;
+
+  .list {
+    height: 100%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    li {
+      font-size: 3.2rem;
+      padding: 1.2rem;
+    }
+  }
+}

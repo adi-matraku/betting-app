@@ -1,0 +1,34 @@
+<div class="tickets-container">
+
+  <div class="tickets-box">
+    <div class="numbers-container">
+      <p class="tickets-heading">Choose 6 Numbers</p>
+
+      <div class="numbers-buttons">
+        <div class="numbers-table">
+
+          <form [formGroup]="form">
+            <p-selectButton class="button-class" [options]="numbers" formControlName="selectedNr" [multiple]="true" optionLabel="name" optionValue="value">
+            </p-selectButton>
+
+            <div class="button-box">
+              <button type="submit" class="button-start" (click)="ticketSubmit()"
+                      [disabled]="this.form.get('selectedNr')?.invalid" >Submit Ticket</button>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="tickets-played">
+    <app-played-tickets
+      [ticket]="selectedNumbers">
+    </app-played-tickets>
+  </div>
+
+</div>

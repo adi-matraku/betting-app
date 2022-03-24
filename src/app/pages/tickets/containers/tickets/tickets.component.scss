@@ -1,0 +1,117 @@
+.tickets-container {
+  position: relative;
+  height: 100vh;
+  //background-color: red;
+
+  .tickets-box {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .numbers-container {
+      margin-top: 7rem;
+      background-color: #1b1b3f;
+
+      height: auto;
+      width: auto;
+      border-radius: 10px;
+
+      .tickets-heading {
+        color: #ebe8e8;
+        font-size: 1.8rem;
+        text-transform: uppercase;
+        padding: 2rem;
+        text-align: left;
+        font-weight: 500;
+        letter-spacing: .8px;
+      }
+
+      .numbers-buttons {
+        margin: 1rem 2rem;
+        padding-bottom: 2rem;
+      }
+
+    }
+  }
+}
+
+.button-box {
+  margin-top: 2rem;
+  text-align: center;
+
+  .button-start {
+    font-size: 1.4rem;
+    background: none;
+    transition: all .2s;
+    cursor: pointer;
+
+    color: #fff;
+    border: 1px solid white;
+    padding: 1rem 2rem;
+    border-radius: 20px;
+
+    &:hover {
+      background-color: white;
+      color: #0f0f31;
+    }
+
+    &:active {
+      background-color: white;
+    }
+  }
+
+}
+
+.tickets-played {
+  position: absolute;
+  right: 0;
+  width: 20%;
+  overflow: auto;
+}
+
+
+:host ::ng-deep {
+  .p-selectbutton {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .p-button-label {
+    font-size: 2rem;
+  }
+
+  .p-buttonset .p-button:first-of-type {
+    border-radius: 20px;
+  }
+
+  .p-buttonset .p-button:last-of-type {
+    border-radius: 20px;
+  }
+
+  .p-buttonset .p-button:not(:first-of-type):not(:last-of-type) {
+    border-radius: 20px;
+  }
+}
+
+//.button-new {
+//  background: none;
+//  text-transform: uppercase;
+//  color: #747496;
+//  font-size: 1.8rem;
+//  font-family: "Exo 2", sans-serif;
+//  padding: 1rem 2rem;
+//  border: 2px solid #747496;
+//  border-radius: 20px;
+//  cursor: pointer;
+//  transition: all .3s;
+//
+//  &:hover {
+//    background-color: #747496;
+//    color: #fff;
+//  }
+//
+//  &:active {
+//    background-color: #585874;
+//  }
+//}

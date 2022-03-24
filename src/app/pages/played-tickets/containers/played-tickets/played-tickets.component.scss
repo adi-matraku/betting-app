@@ -1,0 +1,37 @@
+.ticket-box {
+  background-color: #1b1b3f;
+  overflow-y: auto;
+  height: 100vh;
+
+  .ticket-detail {
+    margin: 1rem;
+    border: 1px solid white;
+    text-align: center;
+  }
+
+  h2 {
+    padding: 2rem;
+  }
+
+  .ticket-details {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .ticket-numbers {
+    padding-bottom: 1.5rem;
+
+    .number {
+      height: 4rem;
+      width: 4rem;
+      border-radius: 20px;
+      background-color: #3b82f6;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+    }
+  }
+}

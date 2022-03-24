@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400;500;600;700;800&family=Rubik:ital,wght@0,300;0,400;0,500;0,700;1,600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /*font-size: 10px;*/
+  /* Percentage of users browser font-size setting */
+  font-size: 62.5%; /* 10px / 16px = 0.625 */
+
+  @media (max-width: 75em) {
+    font-size: 50%;
+  }
+}
+
+body {
+  font-family: "Exo 2", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  background-color: #0f0f31;
+  color: #fff;
+}
