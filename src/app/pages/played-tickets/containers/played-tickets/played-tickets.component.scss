@@ -17,21 +17,45 @@
     display: flex;
     justify-content: center;
     gap: 1.5rem;
+    //background-color: red;
   }
 
   .ticket-numbers {
+    //display: flex;
+    //flex-direction: column;
+    //gap: 1.5rem;
     padding-bottom: 1.5rem;
 
-    .number {
-      height: 4rem;
-      width: 4rem;
-      border-radius: 20px;
-      background-color: #3b82f6;
-
+    .ticket {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
+      gap: 1.5rem;
+      //flex-direction: column;
+    }
+
+    .price {
+      padding-bottom: 1rem;
+      text-align: left;
+      font-size: 1.4rem;
+      font-weight: 400;
+    }
+
+    .numbers-box {
+      display: flex;
+      gap: 1.5rem;
+      //background-color: red;
+
+      .number {
+        height: 4rem;
+        width: 4rem;
+        border-radius: 20px;
+        background-color: #3b82f6;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+      }
     }
   }
 }

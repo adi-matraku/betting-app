@@ -1,6 +1,7 @@
+<ng-container *ngIf="store.state$ | async as state">
 <div class="tickets-container">
 
-  <div class="tickets-box">
+  <div class="tickets-box" *ngIf="state.gameState === 'init'">
     <div class="numbers-container">
       <p class="tickets-heading">Choose 6 Numbers</p>
 
@@ -33,11 +34,16 @@
 
   <div class="tickets-played">
     <app-played-tickets
-    >
-    </app-played-tickets>
+    [state]="state"
+    ></app-played-tickets>
   </div>
 
   <div class="game-box">
-    test
+    <div class="button-box">
+      <button *ngIf="state.gameState === 'init'" class="button">START GAME</button>
+    </div>
+    <app-game></app-game>
   </div>
+
 </div>
+</ng-container>

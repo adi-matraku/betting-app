@@ -1,19 +1,23 @@
-<ng-container *ngIf="store.state$ | async as state">
 <div class="ticket-box">
 
-  <h2 *ngIf="state.tickets[0]?.selectedNr.length === null" >No Ticket Played</h2>
-  <div *ngFor="let selectedNumbers of state.tickets" class="ticket-detail">
+<!--  {{state?.tickets?.length | json}}-->
 
-    <h2 *ngIf="state.tickets[0]?.selectedNr.length !== 0" >Ticket Details</h2>
+<!--  <div *ngFor="let ticket of state.tickets">-->
+<!--    {{ticket.selectedNr}}-->
+<!--  </div>-->
+  <h2 *ngIf="state?.tickets?.length === 0" >No Ticket Played</h2>
+  <div *ngFor="let ticket of state.tickets" class="ticket-detail">
+
+    <h2 *ngIf="ticket.selectedNr.length !== 0" >Ticket Details</h2>
 
     <div class="ticket-details">
 
       <div class="ticket-numbers">
-          <p class="price">Id: {{ selectedNumbers.uuid }}</p>
-          <p class="price">Price: {{ selectedNumbers.price }}$</p>
+          <p class="price">Id: {{ ticket.uuid }}</p>
+          <p class="price">Price: {{ ticket.price }}$</p>
         <div class="ticket">
-          <div *ngFor="let tickets of selectedNumbers?.selectedNr" class="numbers-box">
-            <p class="number">{{tickets}}</p>
+          <div *ngFor="let singleTicket of ticket.selectedNr" class="numbers-box">
+            <p class="number">{{singleTicket}}</p>
           </div>
         </div>
       </div>
@@ -22,4 +26,4 @@
   </div>
 
 </div>
-</ng-container>
+<!--{{state.tickets}}-->

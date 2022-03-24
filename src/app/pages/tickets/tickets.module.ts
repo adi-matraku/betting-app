@@ -6,6 +6,7 @@ import {SelectButtonModule} from "primeng/selectbutton";
 import {PlayedTicketsModule} from "../played-tickets/played-tickets.module";
 import {InputNumberModule} from "primeng/inputnumber";
 import {TicketsStore} from "../../services/tickets-store";
+import {GameModule} from "../game/game.module";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {TicketsStore} from "../../services/tickets-store";
     SelectButtonModule,
     FormsModule,
     PlayedTicketsModule,
-    InputNumberModule
+    InputNumberModule,
+    GameModule
   ],
   providers: [
     TicketsStore

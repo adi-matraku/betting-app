@@ -42,18 +42,13 @@ export class TicketsComponent implements OnInit {
   }
 
   ticketSubmit() {
-    // console.log(this.form.value.selectedNr);
     console.log(this.form.value)
-    // this.selectedNumbers = this.form.value.selectedNr
     this.store.addTicket(this.form.value);
 
     this.form.get('uuid')?.patchValue(uuidv4());
     this.form.get('price')?.patchValue(5);
 
     this.form.get('selectedNr')?.reset();
-    // this.store.state$.subscribe((res)=> console.log(res))
-
-    // console.log(this.selectedNumbers);
   }
 
 }

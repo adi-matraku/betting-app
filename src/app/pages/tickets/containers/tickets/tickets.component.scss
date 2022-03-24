@@ -75,6 +75,13 @@
   padding-bottom: 1.5rem;
 }
 
+.game-box {
+  background-color: #1b1b3f;
+  overflow-y: auto;
+  height: 100vh;
+  width: 20%;
+}
+
 
 :host ::ng-deep {
   .p-selectbutton {
@@ -104,24 +111,24 @@
   }
 }
 
-//.button-new {
-//  background: none;
-//  text-transform: uppercase;
-//  color: #747496;
-//  font-size: 1.8rem;
-//  font-family: "Exo 2", sans-serif;
-//  padding: 1rem 2rem;
-//  border: 2px solid #747496;
-//  border-radius: 20px;
-//  cursor: pointer;
-//  transition: all .3s;
-//
-//  &:hover {
-//    background-color: #747496;
-//    color: #fff;
-//  }
-//
-//  &:active {
-//    background-color: #585874;
-//  }
-//}
+.button {
+  background: none;
+  text-transform: uppercase;
+  color: #747496;
+  font-size: 1.8rem;
+  font-family: "Exo 2", sans-serif;
+  padding: 1rem 2rem;
+  border: 2px solid #747496;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all .3s;
+
+  &:hover {
+    background-color: #747496;
+    color: #fff;
+  }
+
+  &:active {
+    background-color: #585874;
+  }
+}
