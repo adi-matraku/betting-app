@@ -47,3 +47,27 @@
     font-size: 1.8rem;
   }
 }
+
+.winner-box {
+  margin: 2rem;
+  padding: 2rem;
+  border: 1px solid #fff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .winner-text {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: chocolate;
+    margin-bottom: 1rem;
+  }
+
+  .winner-id {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+}

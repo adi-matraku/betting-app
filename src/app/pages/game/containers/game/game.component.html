@@ -9,8 +9,9 @@
     </div>
   </div>
 
-  <div class="winner-box">
-    {{ winningTicket }}
+  <div *ngIf="winningTicket.length !== 0" class="winner-box">
+    <p class="winner-text">Winner:</p>
+    <p *ngFor="let winnerId of winningTicket" class="winner-id">{{winnerId}}</p>
   </div>
 
 </div>

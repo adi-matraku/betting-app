@@ -36,7 +36,6 @@ export class GameComponent implements OnInit {
       let random = this.getRandomNumber();
       while (this.selectedNumbers.some((n) => n === random)) {
         random = this.getRandomNumber();
-
       }
       if (this.selectedNumbers.length < 6) {
         this.selectedNumbers.push(random);
@@ -59,7 +58,7 @@ export class GameComponent implements OnInit {
 
     const winners = this.state.winningNumbers
 
-    console.log('winners:', winners);
+    // console.log('winners:', winners);
 
     for(let i = 0; i < this.state.tickets.length; i++) {
 
@@ -67,7 +66,7 @@ export class GameComponent implements OnInit {
 
       console.log('Matching Numbers:', this.matchingNumbers, 'ID:', this.state.tickets[i].uuid);
 
-      if(this.matchingNumbers >= 1) {
+      if(this.matchingNumbers === 6) {
 
         if (!this.winningTicket.includes(this.state.tickets[i].uuid)) {
           this.winningTicket.push(this.state.tickets[i].uuid);
