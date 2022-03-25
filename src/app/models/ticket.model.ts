@@ -8,4 +8,5 @@ export interface GameState {
   tickets: TicketDetails[],
   gameState: string,
   winningNumbers: number[],
+  ticketWinner: string[],
 }

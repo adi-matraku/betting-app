@@ -14,7 +14,7 @@ export class GameComponent implements OnInit {
   @Input() state!: GameState
 
   winningTicket: string[] = [];
-  matchingNumbers = 0;
+  matchingNumbers = false;
 
   gameOpen$$ = new Subject<void>();
 
@@ -62,21 +62,25 @@ export class GameComponent implements OnInit {
 
     for(let i = 0; i < this.state.tickets.length; i++) {
 
-      this.matchingNumbers = matching(winners, this.state.tickets[i].selectedNr);
+      this.matchingNumbers = this.checktest(this.state.tickets[i].selectedNr, winners);
 
       console.log('Matching Numbers:', this.matchingNumbers, 'ID:', this.state.tickets[i].uuid);
 
-      if(this.matchingNumbers === 6) {
-
-        if (!this.winningTicket.includes(this.state.tickets[i].uuid)) {
+      if(this.matchingNumbers) {
+        if(!this.winningTicket.includes(this.state.tickets[i].uuid)) {
           this.winningTicket.push(this.state.tickets[i].uuid);
         }
 
-        console.log(this.winningTicket);
+        console.log(this.winningTicket)
+        this.store.setTicketWinner(this.winningTicket)
       }
 
     }
 
+  }
+
+  checktest(w: number[], t: number[]) {
+    return w.every(wn => t.includes(wn));
   }
 
   getRandomNumber() {

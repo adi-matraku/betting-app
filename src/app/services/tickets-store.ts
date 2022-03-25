@@ -11,12 +11,14 @@ export interface GameState {
   tickets: TicketDetails[],
   gameState: string,
   winningNumbers: number[]
+  ticketWinner: string[]
 }
 
 export const initialState: GameState = {
   tickets: [],
   gameState: 'init',
-  winningNumbers: []
+  winningNumbers: [],
+  ticketWinner: []
 }
 
 @Injectable()
@@ -39,6 +41,8 @@ export class TicketsStore extends ComponentStore<any> {
   setGameState = (gameState: string) => this.patchState({gameState});
 
   setWinnerState = (winningNumbers: number[]) => this.patchState({winningNumbers});
+
+  setTicketWinner = (ticketWinner: string[]) => this.patchState({ticketWinner});
 
   addTicket = this.updater((state, ticket: TicketDetails) => {
     const tickets = state.tickets;
