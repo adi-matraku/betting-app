@@ -10,11 +10,13 @@ export interface TicketDetails {
 export interface GameState {
   tickets: TicketDetails[],
   gameState: string,
+  winningNumbers: number[]
 }
 
 export const initialState: GameState = {
   tickets: [],
-  gameState: 'init'
+  gameState: 'init',
+  winningNumbers: []
 }
 
 @Injectable()
@@ -23,22 +25,25 @@ export class TicketsStore extends ComponentStore<any> {
   constructor() {
     super(initialState);
     this.state$.subscribe(console.log)
+    const state = localStorage.getItem('state');
+    if(state) {
+      this.patchState(JSON.parse(state));
+    }
+    this.state$.subscribe(state => localStorage.setItem('state', JSON.stringify(state)))
   }
 
   get state(): GameState {
     return this.get(s => s);
   }
 
+  setGameState = (gameState: string) => this.patchState({gameState});
+
+  setWinnerState = (winningNumbers: number[]) => this.patchState({winningNumbers});
+
   addTicket = this.updater((state, ticket: TicketDetails) => {
     const tickets = state.tickets;
     tickets.push(ticket);
     return {...state, tickets}
   })
-
-  // addTicket = (ticket: TicketDetails) => this.updater((s, ticket: TicketDetails) => {
-  //   const tickets = s.tickets;
-  //   tickets.push(ticket);
-  //   return {...s, tickets}
-  // })
 
 }
