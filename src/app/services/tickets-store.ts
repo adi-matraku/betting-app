@@ -21,8 +21,19 @@ export interface GameState {
   ticketWinner: string[];
 }
 
-export const gameInformation: { status: number, duration: string }[] = [
-  { "status": 0, "duration": "Available" }
+export const gameInformation: { status: string, duration: number }[] = [
+  {
+    "status": 'init',
+    "duration": 20
+  },
+  {
+    "status": 'playing',
+    "duration": 30
+  },
+  {
+    "status": 'finished',
+    "duration": 10
+  },
 ];
 
 export const gameStates = ['init', 'playing', 'finished'];
@@ -30,10 +41,10 @@ export const durations = [2, 3, 5];
 
 export const initialState: GameState = {
   tickets: [],
-  gameState: 'init',
+  gameState: gameInformation[0].status,
   winningNumbers: [],
   gameStateTest: 0,
-  testDuration: durations[0],
+  testDuration: gameInformation[0].duration,
   ticketWinner: []
 }
 
