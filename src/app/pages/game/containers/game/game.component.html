@@ -3,7 +3,7 @@
     <button *ngIf="state.gameState === 'init'" class="button" (click)="startGame()">START GAME</button>
   </div>
 
-  <div class="winner">
+  <div class="winner" *ngIf="state.gameState === 'playing' || state.gameState === 'finished'">
     <div *ngFor="let number of state.winningNumbers" class="numbers-box">
       <p class="number"> {{number}} </p>
     </div>

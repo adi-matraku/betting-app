@@ -7,11 +7,6 @@ export interface TicketDetails {
   price: number;
 }
 
-export interface GameDetails {
-  state: string;
-  duration: number | undefined;
-}
-
 export interface GameState {
   tickets: TicketDetails[];
   gameState: string;
@@ -23,12 +18,20 @@ export interface GameState {
 
 export const gameInformation: { status: string, duration: number }[] = [
   {
+    "status": 'pre-game',
+    "duration": 10
+  },
+  {
     "status": 'init',
     "duration": 20
   },
   {
+    "status": 'preparing',
+    "duration": 10
+  },
+  {
     "status": 'playing',
-    "duration": 30
+    "duration": 35
   },
   {
     "status": 'finished',
@@ -36,15 +39,15 @@ export const gameInformation: { status: string, duration: number }[] = [
   },
 ];
 
-export const gameStates = ['init', 'playing', 'finished'];
-export const durations = [2, 3, 5];
+// export const gameStates = ['init', 'playing', 'finished'];
+// export const durations = [2, 3, 5];
 
 export const initialState: GameState = {
   tickets: [],
-  gameState: gameInformation[0].status,
+  gameState: gameInformation[1].status,
   winningNumbers: [],
   gameStateTest: 0,
-  testDuration: gameInformation[0].duration,
+  testDuration: gameInformation[1].duration,
   ticketWinner: []
 }
 
@@ -75,6 +78,8 @@ export class TicketsStore extends ComponentStore<GameState> {
     return this.get(s => s.testDuration)
   }
 
+  setInitialState = () => this.patchState(initialState);
+
   setGameState = (gameState: string) => this.patchState({gameState});
 
   setWinnerState = (winningNumbers: number[]) => this.patchState({winningNumbers});
@@ -82,10 +87,11 @@ export class TicketsStore extends ComponentStore<GameState> {
   setTicketWinner = (ticketWinner: string[]) => this.patchState({ticketWinner});
 
   nextState = this.updater((s, phase: number) => {
-    if(phase < gameStates.length - 1) {
-      return {...s, gameStateTest: phase + 1, testDuration: durations[phase + 1]}
+    if(phase < gameInformation.length - 1) {
+      return {...s, gameState: gameInformation[phase + 1].status, gameStateTest: phase + 1,
+        testDuration: gameInformation[phase + 1].duration}
     } else {
-      return {...s, gameStateTest: 0, testDuration: durations[0]}
+      return {...s, gameState: gameInformation[0].status, gameStateTest: 0, testDuration: gameInformation[0].duration}
     }
   });
 

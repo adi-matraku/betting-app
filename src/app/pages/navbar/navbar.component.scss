@@ -7,9 +7,15 @@
     list-style: none;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     li {
       font-size: 3.2rem;
       padding: 1.2rem;
+    }
+
+    .gamestate {
+      font-size: 1.8rem;
+      color: yellow;
     }
   }
 }

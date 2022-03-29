@@ -20,25 +20,29 @@ export class GameComponent implements OnInit {
 
   selectedNumbers: number[] = [];
 
-  constructor(public store: TicketsStore) { }
+  constructor(public store: TicketsStore) {
+  }
 
   ngOnInit() {
     this.store.gameStateTest$.subscribe(res => {
       console.log('test', res)
 
+      switch (res) {
+        case 0:
+          this.store.setWinnerState([])
+          break;
+        case 3:
+          this.startGame()
+          break;
+      }
+
+
       this.nextPhase(res, this.store.testDuration);
     })
-
-    if(this.state.gameState === 'playing') {
-      this.selectedNumbers = this.state.winningNumbers
-      this.startGame()
-    }
 
   }
 
   startGame() {
-
-    this.store.setGameState('playing');
 
     const interval$ = interval(3000);
 
@@ -50,17 +54,15 @@ export class GameComponent implements OnInit {
       if (this.selectedNumbers.length < 6) {
         this.selectedNumbers.push(random);
       } else {
-        console.log(this.selectedNumbers);
-        this.store.setGameState('init');
-        console.log('finished')
+        // console.log(this.selectedNumbers);
+        // this.store.setGameState('init');
+        // console.log('finished')
         this.gameOpen$$.next();
       }
 
       console.log(random);
 
       this.store.setWinnerState(this.selectedNumbers)
-
-      this.checkWinner()
     });
   }
 
@@ -98,9 +100,11 @@ export class GameComponent implements OnInit {
           }
           console.log('duration', this.store.testDuration);
           console.log(res)
+
         },
       complete: () => {
-          this.store.nextState(phase);
+        console.log('IMPORTANT: PHASE:', phase);
+        this.store.nextState(phase);
           // change state to next state
       }
       }

@@ -1,5 +1,8 @@
+<ng-container *ngIf="store.state$ | async as state">
 <div class="navbar">
   <ul class="list">
     <li>Home</li>
+    <li class="gamestate"> {{state.gameState}} </li>
   </ul>
 </div>
+</ng-container>
