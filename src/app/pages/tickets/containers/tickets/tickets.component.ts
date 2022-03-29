@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validator, Validators} from "@angular/forms";
-import {Subscription} from "rxjs";
+import {FormBuilder, Validators} from "@angular/forms";
 import {customValidator} from "../../utils/customValidator";
 import { v4 as uuidv4 } from 'uuid';
 import {TicketsStore} from "../../../../services/tickets-store";

@@ -7,6 +7,8 @@ export interface TicketDetails {
 export interface GameState {
   tickets: TicketDetails[],
   gameState: string,
+  gameStateTest: number,
+  testDuration: number,
   winningNumbers: number[],
   ticketWinner: string[],
 }

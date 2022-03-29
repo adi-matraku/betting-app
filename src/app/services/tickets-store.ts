@@ -3,26 +3,44 @@ import {Injectable} from "@angular/core";
 
 export interface TicketDetails {
   uuid: string;
-  numbers: number[];
+  selectedNr: number[];
   price: number;
 }
 
-export interface GameState {
-  tickets: TicketDetails[],
-  gameState: string,
-  winningNumbers: number[]
-  ticketWinner: string[]
+export interface GameDetails {
+  state: string;
+  duration: number | undefined;
 }
+
+export interface GameState {
+  tickets: TicketDetails[];
+  gameState: string;
+  gameStateTest: number;
+  testDuration: number;
+  winningNumbers: number[];
+  ticketWinner: string[];
+}
+
+export const gameInformation: { status: number, duration: string }[] = [
+  { "status": 0, "duration": "Available" }
+];
+
+export const gameStates = ['init', 'playing', 'finished'];
+export const durations = [2, 3, 5];
 
 export const initialState: GameState = {
   tickets: [],
   gameState: 'init',
   winningNumbers: [],
+  gameStateTest: 0,
+  testDuration: durations[0],
   ticketWinner: []
 }
 
 @Injectable()
-export class TicketsStore extends ComponentStore<any> {
+export class TicketsStore extends ComponentStore<GameState> {
+
+  gameStateTest$ = this.select(s => s.gameStateTest)
 
   constructor() {
     super(initialState);
@@ -38,11 +56,29 @@ export class TicketsStore extends ComponentStore<any> {
     return this.get(s => s);
   }
 
+  get gameStateTest(): number {
+    return this.get(s => s.gameStateTest)
+  }
+
+  get testDuration(): number {
+    return this.get(s => s.testDuration)
+  }
+
   setGameState = (gameState: string) => this.patchState({gameState});
 
   setWinnerState = (winningNumbers: number[]) => this.patchState({winningNumbers});
 
   setTicketWinner = (ticketWinner: string[]) => this.patchState({ticketWinner});
+
+  nextState = this.updater((s, phase: number) => {
+    if(phase < gameStates.length - 1) {
+      return {...s, gameStateTest: phase + 1, testDuration: durations[phase + 1]}
+    } else {
+      return {...s, gameStateTest: 0, testDuration: durations[0]}
+    }
+  });
+
+  countdown = () => this.patchState({testDuration: this.testDuration -1})
 
   addTicket = this.updater((state, ticket: TicketDetails) => {
     const tickets = state.tickets;

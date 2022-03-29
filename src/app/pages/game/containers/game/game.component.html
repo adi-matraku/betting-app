@@ -1,6 +1,6 @@
 <div class="game-container">
   <div class="button-box">
-    <button *ngIf="state.gameState === 'init' ||  state.gameState === 'finished'" class="button" (click)="startGame()">START GAME</button>
+    <button *ngIf="state.gameState === 'init'" class="button" (click)="startGame()">START GAME</button>
   </div>
 
   <div class="winner">
