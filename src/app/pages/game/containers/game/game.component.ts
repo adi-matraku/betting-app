@@ -24,20 +24,34 @@ export class GameComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.selectedNumbers);
     this.store.gameStateTest$.subscribe(res => {
       console.log('test', res)
 
       switch (res) {
         case 0:
-          this.store.setWinnerState([])
+          this.store.setPreState([], [], [])
+          this.matchingNumbers = 0
           break;
         case 3:
-          this.startGame()
+          console.log(this.state.winningNumbers);
+          console.log('LENGTH:', this.state.winningNumbers.length);
+          if(this.state.winningNumbers.length > 0 && this.state.winningNumbers.length < 6) {
+            console.log('TRUEEEEEEE');
+            console.log('selected:', this.state.winningNumbers);
+            this.selectedNumbers = this.state.winningNumbers
+            this.startGame()
+          } else {
+            console.log('FALSEEEEE');
+            this.startGame()
+          }
+          break;
+        case 4:
+          this.checkWinner()
           break;
       }
 
-
-      this.nextPhase(res, this.store.testDuration);
+      this.nextPhase(res, this.store.stateTimeLeft);
     })
 
   }
@@ -45,6 +59,10 @@ export class GameComponent implements OnInit {
   startGame() {
 
     const interval$ = interval(3000);
+
+    if(this.selectedNumbers.length === 6) {
+      this.selectedNumbers = []
+    }
 
     interval$.pipe(takeUntil(this.gameOpen$$)).subscribe((tick) => {
       let random = this.getRandomNumber();
@@ -54,13 +72,11 @@ export class GameComponent implements OnInit {
       if (this.selectedNumbers.length < 6) {
         this.selectedNumbers.push(random);
       } else {
-        // console.log(this.selectedNumbers);
-        // this.store.setGameState('init');
-        // console.log('finished')
         this.gameOpen$$.next();
       }
 
       console.log(random);
+      console.log(this.selectedNumbers);
 
       this.store.setWinnerState(this.selectedNumbers)
     });
@@ -70,12 +86,12 @@ export class GameComponent implements OnInit {
 
     const winners = this.state.winningNumbers
 
-    // console.log('winners:', winners);
+    console.log('winners:', winners);
 
     for(let i = 0; i < this.state.tickets.length; i++) {
 
       this.matchingNumbers = matching(winners, this.state.tickets[i].selectedNr);
-      // console.log(this.matchingNumbers)
+      console.log(this.matchingNumbers)
       console.log('Matching Numbers:', this.matchingNumbers, 'ID:', this.state.tickets[i].uuid);
 
       if(this.matchingNumbers === 6) {
@@ -94,18 +110,13 @@ export class GameComponent implements OnInit {
   nextPhase(phase: number, duration: number) {
     interval(1000).pipe(take(duration)).subscribe({
         next: res => {
-          //patch state with -1 second;
-          if(this.store.testDuration > 0) {
+          if(this.store.stateTimeLeft > 0) {
             this.store.countdown();
           }
-          console.log('duration', this.store.testDuration);
-          console.log(res)
-
         },
       complete: () => {
         console.log('IMPORTANT: PHASE:', phase);
         this.store.nextState(phase);
-          // change state to next state
       }
       }
     )

@@ -8,7 +8,7 @@ export interface GameState {
   tickets: TicketDetails[],
   gameState: string,
   gameStateTest: number,
-  testDuration: number,
+  stateTimeLeft: number,
   winningNumbers: number[],
   ticketWinner: string[],
 }

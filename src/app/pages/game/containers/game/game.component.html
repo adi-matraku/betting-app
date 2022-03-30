@@ -1,7 +1,7 @@
 <div class="game-container">
-  <div class="button-box">
-    <button *ngIf="state.gameState === 'init'" class="button" (click)="startGame()">START GAME</button>
-  </div>
+<!--  <div class="button-box">-->
+<!--    <button *ngIf="state.gameState === 'init'" class="button" (click)="startGame()">START GAME</button>-->
+<!--  </div>-->
 
   <div class="winner" *ngIf="state.gameState === 'playing' || state.gameState === 'finished'">
     <div *ngFor="let number of state.winningNumbers" class="numbers-box">
@@ -12,6 +12,10 @@
   <div *ngIf="state.ticketWinner.length !== 0" class="winner-box">
     <p class="winner-text">Winner:</p>
     <p *ngFor="let winnerId of state.ticketWinner" class="winner-id">{{winnerId}}</p>
+  </div>
+
+  <div *ngIf="state.ticketWinner.length === 0 && state.gameState === 'finished'" class="winner-box">
+    <p class="no-winner-text">No Winner :(</p>
   </div>
 
 </div>
