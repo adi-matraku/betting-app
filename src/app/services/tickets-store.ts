@@ -19,15 +19,15 @@ export interface GameState {
 export const gameInformation: { status: string, duration: number }[] = [
   {
     "status": 'pre-game',
-    "duration": 10
+    "duration": 15
   },
   {
     "status": 'init',
-    "duration": 20
+    "duration": 300
   },
   {
     "status": 'preparing',
-    "duration": 10
+    "duration": 15
   },
   {
     "status": 'playing',
@@ -35,7 +35,7 @@ export const gameInformation: { status: string, duration: number }[] = [
   },
   {
     "status": 'finished',
-    "duration": 10
+    "duration": 15
   },
 ];
 

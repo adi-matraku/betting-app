@@ -3,18 +3,18 @@
 
     <p class="state-text" *ngIf="state.gameState === 'pre-game'">
       Be ready to submit your tickets! <br> Game Initialization in
-      <span> {{ state.stateTimeLeft }} seconds</span>
+      <span class="timelapse"> {{ state.stateTimeLeft * 1000 | date:'mm:ss' }}</span>
     </p>
 
     <p class="state-text" *ngIf="state.gameState === 'init'">
       Please submit a ticket for the upcoming draw within
-      <span>{{ state.stateTimeLeft }} seconds</span>
+      <span class="timelapse">{{ state.stateTimeLeft * 1000 | date:'mm:ss' }}</span>
     </p>
 
 
     <p class="state-text" *ngIf="state.gameState === 'preparing'">
       Good luck! Upcoming draw in
-      <span>{{ state.stateTimeLeft }} seconds</span>
+      <span class="timelapse">{{ state.stateTimeLeft * 1000 | date:'mm:ss' }}</span>
     </p>
 
   </div>
