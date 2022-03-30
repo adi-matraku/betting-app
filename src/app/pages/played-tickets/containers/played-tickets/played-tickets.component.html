@@ -1,10 +1,5 @@
 <div class="ticket-box">
 
-<!--  {{state?.tickets?.length | json}}-->
-
-<!--  <div *ngFor="let ticket of state.tickets">-->
-<!--    {{ticket.selectedNr}}-->
-<!--  </div>-->
   <h2 *ngIf="state?.tickets?.length === 0" >No Ticket Played</h2>
   <div *ngFor="let ticket of state.tickets" class="ticket-detail">
 
@@ -26,4 +21,3 @@
   </div>
 
 </div>
-<!--{{state.tickets}}-->
