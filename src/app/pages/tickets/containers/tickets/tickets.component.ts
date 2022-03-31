@@ -41,7 +41,7 @@ export class TicketsComponent implements OnInit {
   }
 
   ticketSubmit() {
-    console.log(this.form.value)
+    // console.log(this.form.value)
     this.store.addTicket(this.form.value);
 
     this.form.get('uuid')?.patchValue(uuidv4());

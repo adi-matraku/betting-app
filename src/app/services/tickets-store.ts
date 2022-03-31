@@ -45,7 +45,7 @@ export const initialState: GameState = {
   jackpot: 1000,
   gameState: gameInformation[1].status,
   winningNumbers: [],
-  gameStateIndex: 0,
+  gameStateIndex: 1,
   stateTimeLeft: gameInformation[1].duration,
   ticketWinner: []
 }
@@ -76,10 +76,6 @@ export class TicketsStore extends ComponentStore<GameState> {
   get stateTimeLeft(): number {
     return this.get(s => s.stateTimeLeft)
   }
-
-  setInitialState = () => this.patchState(initialState);
-
-  setGameState = (gameState: string) => this.patchState({gameState});
 
   setWinnerState = (winningNumbers: number[]) => this.patchState({winningNumbers});
 

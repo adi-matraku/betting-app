@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TicketsStore} from "../../../../services/tickets-store";
-import {interval, Subject, take, takeUntil, timer} from "rxjs";
+import {interval, Subject, take, takeUntil} from "rxjs";
 import {GameState, TicketDetails} from "../../../../models/ticket.model";
 import {matching} from "../../utils/matching";
 
@@ -15,6 +15,7 @@ export class GameComponent implements OnInit {
 
   winningTicket: string[] = [];
   matchingNumbers: number = 0;
+
   ticketPrices: number[] = []
   defaultJackpot: number = 1000;
   newJackpot: number = 0;
@@ -29,34 +30,39 @@ export class GameComponent implements OnInit {
   ngOnInit() {
     console.log(this.selectedNumbers);
     this.store.gameStateIndex$.subscribe(res => {
-      console.log('test', res)
 
       switch (res) {
         case 0:
+
           this.store.setPreState([], [], [])
           this.matchingNumbers = 0
           break;
+
         case 2:
-          console.log(this.state.tickets);
-          this.calculateJackpot(this.state.tickets)
-          this.store.setJackpot(this.newJackpot)
+
+          if(this.state.tickets.length === 0) {
+            this.store.setJackpot(this.state.jackpot)
+          } else {
+            this.calculateJackpot(this.state.tickets)
+            this.store.setJackpot(this.newJackpot)
+          }
           break;
+
         case 3:
-          console.log(this.state.winningNumbers);
-          console.log('LENGTH:', this.state.winningNumbers.length);
+
           if(this.state.winningNumbers.length > 0 && this.state.winningNumbers.length < 6) {
-            console.log('TRUEEEEEEE');
-            console.log('selected:', this.state.winningNumbers);
             this.selectedNumbers = this.state.winningNumbers
             this.startGame()
           } else {
-            console.log('FALSEEEEE');
             this.startGame()
           }
           break;
+
         case 4:
+
           this.checkWinner()
           break;
+
       }
 
       this.nextPhase(res, this.store.stateTimeLeft);
@@ -130,10 +136,6 @@ export class GameComponent implements OnInit {
     )
   }
 
-  // checktest(w: number[], t: number[]) {
-  //   return w.every(wn => t.includes(wn));
-  // }
-
   calculateJackpot(tickets: TicketDetails[]) {
 
     // if(this.ticketPrices.length !== 0) {
@@ -166,11 +168,11 @@ export class GameComponent implements OnInit {
       sum += percentagePrices[i];
     }
 
-    console.log('SUMMMM:', sum);
+    console.log('SUM:', sum);
 
     this.newJackpot = this.defaultJackpot + sum
 
-    console.log('NEW JACKPOTTTTT:', this.newJackpot);
+    console.log('NEW JACKPOT:', this.newJackpot);
   }
 
   getRandomNumber() {
