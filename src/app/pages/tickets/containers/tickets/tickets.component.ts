@@ -13,6 +13,7 @@ export class TicketsComponent implements OnInit {
 
   ticket: boolean = false;
   numbers: {name: string; value: number}[] = this.getArrayNumbers();
+  jackpotValue: number = 0;
 
   form = this.fb.group({
     uuid: [uuidv4()],
@@ -41,13 +42,17 @@ export class TicketsComponent implements OnInit {
   }
 
   ticketSubmit() {
-    // console.log(this.form.value)
+    console.log(this.form.value)
     this.store.addTicket(this.form.value);
 
     this.form.get('uuid')?.patchValue(uuidv4());
-    this.form.get('price')?.patchValue(5);
+    // this.form.get('price')?.patchValue(5);
 
     this.form.get('selectedNr')?.reset();
+
+    this.jackpotValue = this.store.state.jackpot + ((this.form.value.price * 40) / 100)
+
+    this.store.setJackpot(this.jackpotValue)
   }
 
 }

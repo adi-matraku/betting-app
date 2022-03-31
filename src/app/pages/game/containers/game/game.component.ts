@@ -16,8 +16,6 @@ export class GameComponent implements OnInit {
   winningTicket: string[] = [];
   matchingNumbers: number = 0;
 
-  ticketPrices: number[] = []
-  defaultJackpot: number = 1000;
   newJackpot: number = 0;
 
   gameOpen$$ = new Subject<void>();
@@ -39,13 +37,13 @@ export class GameComponent implements OnInit {
           break;
 
         case 2:
-
-          if(this.state.tickets.length === 0) {
-            this.store.setJackpot(this.state.jackpot)
-          } else {
-            this.calculateJackpot(this.state.tickets)
-            this.store.setJackpot(this.newJackpot)
-          }
+          console.log('HERE');
+          // if(this.state.tickets.length === 0) {
+          //   this.store.setJackpot(this.state.jackpot)
+          // } else {
+          //   this.calculateJackpot(this.state.tickets)
+          //   this.store.setJackpot(this.newJackpot)
+          // }
           break;
 
         case 3:
@@ -136,44 +134,65 @@ export class GameComponent implements OnInit {
     )
   }
 
-  calculateJackpot(tickets: TicketDetails[]) {
+  // calculateJackpot(tickets: TicketDetails[]) {
+  //
+  //   const ticketPrices: number[] = []
+  //   let newPrice: number[] = []
+  //   let sum = 0;
+  //
+  //   tickets.forEach((ticket: TicketDetails)=>{
+  //     ticketPrices.push(ticket.price)
+  //     console.log(ticketPrices);
+  //
+  //   })
+  //
+  //   ticketPrices.forEach((price)=> {
+  //       console.log((price * 40) / 100);
+  //
+  //       sum = sum + (price * 40) / 100
+  //       console.log(sum);
+  //
+  //       this.newJackpot = this.state.jackpot + sum;
+  //   })
+  //
+  //
+  //   // if(this.ticketPrices.length !== 0) {
+  //   //   this.ticketPrices = []
+  //   // }
+  //   // const ticketPrices: number[] = []
+  //   //
+  //   // for(let i = 0; i < tickets.length; i++) {
+  //   //   ticketPrices.push(tickets[i].price)
+  //   //   console.log(ticketPrices);
+  //   // }
+  //
+  //   // this.getTicketPercentage()
+  //
+  // }
 
-    // if(this.ticketPrices.length !== 0) {
-    //   this.ticketPrices = []
-    // }
-
-    for(let i = 0; i < tickets.length; i++) {
-      this.ticketPrices.push(tickets[i].price)
-      console.log(this.ticketPrices);
-    }
-
-    this.getTicketPercentage()
-
-  }
-
-  getTicketPercentage() {
-    const percentagePrices: number[] = []
-    let sum = 0;
-
-    this.ticketPrices.forEach((price: number) => {
-      let newPrice = (price * 40) / 100;
-
-      percentagePrices.push(newPrice)
-
-      console.log(percentagePrices);
-
-    })
-
-    for (let i = 0; i < percentagePrices.length; i++) {
-      sum += percentagePrices[i];
-    }
-
-    console.log('SUM:', sum);
-
-    this.newJackpot = this.defaultJackpot + sum
-
-    console.log('NEW JACKPOT:', this.newJackpot);
-  }
+  // getTicketPercentage() {
+  //   const percentagePrices: number[] = []
+  //   let sum = 0;
+  //
+  //   this.ticketPrices.forEach((price: number) => {
+  //     let newPrice = (price * 40) / 100;
+  //
+  //     percentagePrices.push(newPrice)
+  //
+  //     console.log(percentagePrices);
+  //
+  //   })
+  //
+  //   for (let i = 0; i < percentagePrices.length; i++) {
+  //     sum += percentagePrices[i];
+  //   }
+  //
+  //   console.log('SUM:', sum);
+  //
+  //   this.newJackpot = this.state.jackpot + sum
+  //
+  //   console.log('NEW JACKPOT:', this.newJackpot);
+  // }
 
   getRandomNumber() {
     return Math.floor((Math.random() * 39) + 1);
