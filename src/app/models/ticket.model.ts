@@ -6,8 +6,9 @@ export interface TicketDetails {
 
 export interface GameState {
   tickets: TicketDetails[],
+  jackpot: number,
   gameState: string,
-  gameStateTest: number,
+  gameStateIndex: number,
   stateTimeLeft: number,
   winningNumbers: number[],
   ticketWinner: string[],

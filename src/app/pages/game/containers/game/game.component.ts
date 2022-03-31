@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TicketsStore} from "../../../../services/tickets-store";
 import {interval, Subject, take, takeUntil, timer} from "rxjs";
-import {GameState} from "../../../../models/ticket.model";
+import {GameState, TicketDetails} from "../../../../models/ticket.model";
 import {matching} from "../../utils/matching";
 
 @Component({
@@ -15,6 +15,9 @@ export class GameComponent implements OnInit {
 
   winningTicket: string[] = [];
   matchingNumbers: number = 0;
+  ticketPrices: number[] = []
+  defaultJackpot: number = 1000;
+  newJackpot: number = 0;
 
   gameOpen$$ = new Subject<void>();
 
@@ -25,13 +28,18 @@ export class GameComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.selectedNumbers);
-    this.store.gameStateTest$.subscribe(res => {
+    this.store.gameStateIndex$.subscribe(res => {
       console.log('test', res)
 
       switch (res) {
         case 0:
           this.store.setPreState([], [], [])
           this.matchingNumbers = 0
+          break;
+        case 2:
+          console.log(this.state.tickets);
+          this.calculateJackpot(this.state.tickets)
+          this.store.setJackpot(this.newJackpot)
           break;
         case 3:
           console.log(this.state.winningNumbers);
@@ -122,8 +130,47 @@ export class GameComponent implements OnInit {
     )
   }
 
-  checktest(w: number[], t: number[]) {
-    return w.every(wn => t.includes(wn));
+  // checktest(w: number[], t: number[]) {
+  //   return w.every(wn => t.includes(wn));
+  // }
+
+  calculateJackpot(tickets: TicketDetails[]) {
+
+    // if(this.ticketPrices.length !== 0) {
+    //   this.ticketPrices = []
+    // }
+
+    for(let i = 0; i < tickets.length; i++) {
+      this.ticketPrices.push(tickets[i].price)
+      console.log(this.ticketPrices);
+    }
+
+    this.getTicketPercentage()
+
+  }
+
+  getTicketPercentage() {
+    const percentagePrices: number[] = []
+    let sum = 0;
+
+    this.ticketPrices.forEach((price: number) => {
+      let newPrice = (price * 40) / 100;
+
+      percentagePrices.push(newPrice)
+
+      console.log(percentagePrices);
+
+    })
+
+    for (let i = 0; i < percentagePrices.length; i++) {
+      sum += percentagePrices[i];
+    }
+
+    console.log('SUMMMM:', sum);
+
+    this.newJackpot = this.defaultJackpot + sum
+
+    console.log('NEW JACKPOTTTTT:', this.newJackpot);
   }
 
   getRandomNumber() {

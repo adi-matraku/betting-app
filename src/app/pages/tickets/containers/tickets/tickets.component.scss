@@ -3,6 +3,13 @@
   height: 100vh;
   //background-color: red;
 
+  .jackpot-box {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 1rem;
+  }
+
   .tickets-box {
     position: absolute;
     left: 50%;

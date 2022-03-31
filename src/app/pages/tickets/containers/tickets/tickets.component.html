@@ -1,6 +1,10 @@
 <ng-container *ngIf="store.state$ | async as state">
 <div class="tickets-container">
 
+  <div class="jackpot-box" *ngIf="state.gameState === 'init' || state.gameState === 'preparing' || state.gameState === 'playing'">
+    <h1> Jackpot: {{state.jackpot | currency}} </h1>
+  </div>
+
   <div class="tickets-box" *ngIf="state.gameState === 'init'">
     <div class="numbers-container">
       <p class="tickets-heading">Choose 6 Numbers</p>
