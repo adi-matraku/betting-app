@@ -32,7 +32,7 @@ export const gameInformation: { status: string, duration: number }[] = [
   },
   {
     "status": 'playing',
-    "duration": 25
+    "duration": 18
   },
   {
     "status": 'finished',

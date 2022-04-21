@@ -72,6 +72,10 @@ export class GameComponent implements OnInit {
       }
 
       console.log(random);
+
+      if(this.selectedNumbers.length <= 6) {
+       this.playAudio(random)
+      }
       console.log(this.selectedNumbers);
 
       this.store.setWinnerState(this.selectedNumbers)
@@ -120,5 +124,11 @@ export class GameComponent implements OnInit {
 
   getRandomNumber() {
     return Math.floor((Math.random() * 39) + 1);
+  }
+
+  playAudio(id: number){
+    let audio = new Audio();
+    audio.src = `./assets/numbers/voice-${id}.mp3`;
+    audio.play();
   }
 }
