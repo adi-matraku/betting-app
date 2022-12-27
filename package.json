@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "~13.2.0",
     "@angular/router": "~13.2.0",
     "@ngrx/component-store": "^13.0.2",
+    "primeicons": "^6.0.1",
     "primeng": "^13.3.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

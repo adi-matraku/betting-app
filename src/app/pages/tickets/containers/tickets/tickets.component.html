@@ -8,16 +8,15 @@
   <div class="tickets-box" *ngIf="state.gameState === 'init'">
     <div class="numbers-container">
       <p class="tickets-heading">Choose 6 Numbers</p>
-
       <div class="numbers-buttons">
         <div class="numbers-table">
-
           <form [formGroup]="form">
             <p-selectButton class="button-class" [options]="numbers" formControlName="selectedNr" [multiple]="true" optionLabel="name" optionValue="value">
             </p-selectButton>
 
             <div class="price-box">
-              <p-inputNumber formControlName="price" [showButtons]="true" inputId="stacked" mode="currency" currency="USD">
+              <p-inputNumber formControlName="price" [showButtons]="true" inputId="stacked"
+                             mode="currency" currency="USD" >
               </p-inputNumber>
             </div>
 
@@ -25,15 +24,10 @@
               <button type="submit" class="button-start" (click)="ticketSubmit()"
                       [disabled]="this.form.get('selectedNr')?.invalid" >Submit Ticket</button>
             </div>
-
           </form>
-
         </div>
-
       </div>
-
     </div>
-
   </div>
 
   <div class="tickets-played">

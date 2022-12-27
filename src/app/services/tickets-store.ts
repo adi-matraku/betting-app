@@ -88,12 +88,12 @@ export class TicketsStore extends ComponentStore<GameState> {
   setPreState = (winningNumbers: number[], ticketWinner: string[], tickets: []) =>
     this.patchState({winningNumbers, ticketWinner, tickets})
 
-  nextState = this.updater((s, phase: number) => {
+  nextState = this.updater((state: GameState, phase: number) => {
     if(phase < gameInformation.length - 1) {
-      return {...s, gameState: gameInformation[phase + 1].status, gameStateIndex: phase + 1,
+      return {...state, gameState: gameInformation[phase + 1].status, gameStateIndex: phase + 1,
         stateTimeLeft: gameInformation[phase + 1].duration}
     } else {
-      return {...s, gameState: gameInformation[0].status, gameStateIndex: 0, stateTimeLeft: gameInformation[0].duration}
+      return {...state, gameState: gameInformation[0].status, gameStateIndex: 0, stateTimeLeft: gameInformation[0].duration}
     }
   });
 

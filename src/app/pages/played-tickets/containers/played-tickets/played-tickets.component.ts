@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {TicketsStore} from "../../../../services/tickets-store";
+import {Component, Input} from '@angular/core';
 import {GameState} from "../../../../models/ticket.model";
 
 @Component({
@@ -7,16 +6,11 @@ import {GameState} from "../../../../models/ticket.model";
   templateUrl: './played-tickets.component.html',
   styleUrls: ['./played-tickets.component.scss']
 })
-export class PlayedTicketsComponent implements OnInit {
+export class PlayedTicketsComponent {
 
-  // @Input() ticket!: number[];
   @Input() state!: GameState;
 
-  constructor(public store: TicketsStore) {
-    // this.store.state$.subscribe((res)=> console.log(res.tickets))
-  }
-
-  ngOnInit(): void {
+  constructor() {
   }
 
 }
